@@ -1,13 +1,13 @@
 package service.custom.impl;
 
-import dto.UserTempDTO;
+import dto.TempUserDTO;
 import service.custom.UserService;
 
 public class UserServiceImpl implements UserService {
 
     @Override
-    public boolean addTempUser(UserTempDTO userTempDTO) {
-        System.out.println(userTempDTO);
+    public boolean addTempUser(TempUserDTO tempUserDTO) {
+        System.out.println(tempUserDTO);
         return false;
     }
 }

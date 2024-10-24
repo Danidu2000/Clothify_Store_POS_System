@@ -1,4 +1,4 @@
-package controller.popout;
+package controller.popup;
 
 import com.jfoenix.controls.JFXTextField;
 import dto.SupplierBasicDTO;

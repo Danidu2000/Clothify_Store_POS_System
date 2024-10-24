@@ -1,10 +1,14 @@
 package repository.custom.impl;
 
 import entity.TempUserEntity;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import repository.custom.TempUserDao;
 import util.HibernateUtil;
+
+import java.util.List;
 
 public class TempUserDaoImpl implements TempUserDao {
     @Override
@@ -24,7 +28,13 @@ public class TempUserDaoImpl implements TempUserDao {
 
     @Override
     public ObservableList<TempUserEntity> getAll() {
-        return null;
+        Session session = HibernateUtil.getSession();
+        session.beginTransaction();
+        Query<TempUserEntity> query = session.createQuery("FROM TempUserEntity", TempUserEntity.class);
+        List<TempUserEntity> tempUserList = query.getResultList();
+        session.getTransaction().commit();
+        session.close();
+        return FXCollections.observableArrayList(tempUserList);
     }
 
     @Override

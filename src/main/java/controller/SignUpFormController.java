@@ -4,7 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import dto.UserTempDTO;
+import dto.TempUserDTO;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -14,7 +14,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import service.ServiceFactory;
 import service.custom.TempUserService;
-import service.custom.UserService;
 import util.ServiceType;
 
 import java.net.URL;
@@ -52,7 +51,7 @@ public class SignUpFormController implements Initializable {
             showAlert(Alert.AlertType.ERROR,"Error","Error!", "Password is invalid! It must be at least 8 characters long and contain letters, digits, and special characters.");
             psfPassword.setText("");
         } else {
-            boolean b = tempUserService.addUser(new UserTempDTO(txtFirstName.getText() + " " + txtLastName.getText(), txtEmail.getText(), psfPassword.getText()));
+            boolean b = tempUserService.addUser(new TempUserDTO(txtFirstName.getText() + " " + txtLastName.getText(), txtEmail.getText(), psfPassword.getText()));
             if (b){
                 showAlert(INFORMATION,"Success","Success!","you request saved successfully.");
             }else {
