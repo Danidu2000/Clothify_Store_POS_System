@@ -11,6 +11,6 @@ import lombok.ToString;
 @ToString
 
 public class LoginInfoDTO {
-    private String user_name;
+    private String email;
     private String password;
 }

@@ -12,7 +12,6 @@ import lombok.ToString;
 
 public class User {
     private String user_id;
-    private String user_name;
     private String name;
     private String email;
     private String password;

@@ -7,14 +7,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import service.ServiceFactory;
-import service.custom.SupplierService;
-import util.ServiceType;
 
 import java.io.IOException;
 
 public class SupplierManagementFormController {
+    @FXML
+    public TableView tblSupplier;
+
     @FXML
     private JFXComboBox<?> cmbId;
 
@@ -56,9 +57,12 @@ public class SupplierManagementFormController {
     }
 
     @FXML
-    void btnUpdateSupllierOnAction(ActionEvent event) {
+    void btnUpdateSupplierOnAction(ActionEvent event) {
 
     }
 
 
+    public void btnReloadTableOnAction(ActionEvent actionEvent) {
+
+    }
 }

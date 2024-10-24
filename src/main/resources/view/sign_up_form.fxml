@@ -7,14 +7,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="367.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SignUpFormController">
    <children>
       <JFXTextField fx:id="txtFirstName" layoutX="66.0" layoutY="84.0" prefHeight="26.0" prefWidth="228.0" promptText="First name" />
-      <JFXTextField fx:id="txtLastName" layoutX="66.0" layoutY="132.0" prefHeight="26.0" prefWidth="228.0" promptText="First name" text="Last name" />
-      <JFXTextField fx:id="txtEmail" layoutX="66.0" layoutY="180.0" prefHeight="26.0" prefWidth="228.0" promptText="First name" text="Email" />
+      <JFXTextField fx:id="txtLastName" layoutX="66.0" layoutY="132.0" prefHeight="26.0" prefWidth="228.0" promptText="Last name" />
+      <JFXTextField fx:id="txtEmail" layoutX="66.0" layoutY="180.0" prefHeight="26.0" prefWidth="228.0" promptText="Email" />
       <JFXPasswordField fx:id="psfPassword" layoutX="66.0" layoutY="231.0" prefHeight="26.0" prefWidth="228.0" promptText="Password" />
-      <JFXButton layoutX="66.0" layoutY="344.0" onAction="#btnRequestToCreateAccountOnAcion" prefHeight="26.0" prefWidth="228.0" style="-fx-background-color: #3867d6;" text="Request to create account" textFill="WHITE">
+      <JFXButton fx:id="btnRequestToCreateAccount" layoutX="66.0" layoutY="344.0" onAction="#btnRequestToCreateAccountOnAction" prefHeight="26.0" prefWidth="228.0" style="-fx-background-color: #3867d6;" text="Request to create account" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

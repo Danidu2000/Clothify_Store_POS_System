@@ -25,14 +25,14 @@ public class LoginFormController {
     private JFXPasswordField psfPassword;
 
     @FXML
-    private JFXTextField txtUserName;
+    private JFXTextField txtEmail;
 
     LoginInfoService loginInfoService = ServiceFactory.getInstance().getServiceType(ServiceType.LOGININFO);
 
     @FXML
     void userLogOnAction(ActionEvent event) {
         LoginInfoDTO loginInfoDTO = new LoginInfoDTO(
-                txtUserName.getText(),
+                txtEmail.getText(),
                 psfPassword.getText()
         );
         Pair<Boolean, String> validate = loginInfoService.isValidate(loginInfoDTO);

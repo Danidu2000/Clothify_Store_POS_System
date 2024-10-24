@@ -9,12 +9,14 @@ import service.custom.SupplierService;
 import util.ServiceType;
 
 public class AddSupplierPopupFormController {
-    SupplierService supplierService = ServiceFactory.getInstance().getServiceType(ServiceType.SUPPLIER);
+
     @FXML
     private JFXTextField txtContact;
 
     @FXML
     private JFXTextField txtName;
+
+    SupplierService supplierService = ServiceFactory.getInstance().getServiceType(ServiceType.SUPPLIER);
 
     @FXML
     void btnAddSupplierOnAction(ActionEvent event) {
