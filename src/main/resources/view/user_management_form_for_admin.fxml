@@ -17,7 +17,7 @@
       <JFXButton fx:id="btnDeleteUserOnAction" layoutX="540.0" layoutY="190.0" onAction="#btnDeleteSupplierOnAction" style="-fx-background-color: #a29bfe;" text="Delete" />
       <JFXButton fx:id="btnUpdateUserOnAction" layoutX="617.0" layoutY="190.0" onAction="#btnUpdateSupplierOnAction" style="-fx-background-color: #a29bfe;" text="Update" />
       <JFXButton fx:id="btnSearchUserOnAction" layoutX="696.0" layoutY="190.0" onAction="#btnSearchSupplierOnAction" style="-fx-background-color: #a29bfe;" text="Search" />
-      <TableView fx:id="tblSupplier" layoutX="45.0" layoutY="251.0" prefHeight="200.0" prefWidth="706.0">
+      <TableView fx:id="tblUser" layoutX="45.0" layoutY="251.0" prefHeight="200.0" prefWidth="706.0">
          <columns>
             <TableColumn fx:id="colId" prefWidth="102.39998626708984" text="User ID" />
             <TableColumn fx:id="colName" minWidth="0.0" prefWidth="187.20001220703125" text="Name" />

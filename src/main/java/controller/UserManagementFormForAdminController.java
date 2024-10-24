@@ -3,17 +3,29 @@ package controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import dto.UserDTO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import service.ServiceFactory;
+import service.custom.UserService;
+import util.ServiceType;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class UserManagementFormForAdminController {
+public class UserManagementFormForAdminController implements Initializable {
+
+    UserService userService = ServiceFactory.getInstance().getServiceType(ServiceType.USER);
 
     @FXML
     private JFXButton btnDeleteUserOnAction;
@@ -25,13 +37,13 @@ public class UserManagementFormForAdminController {
     private JFXButton btnUpdateUserOnAction;
 
     @FXML
-    private JFXComboBox<?> cmbId;
+    private JFXComboBox<String> cmbId;
 
     @FXML
-    private JFXComboBox<?> cmbRole;
+    private JFXComboBox<String> cmbRole;
 
     @FXML
-    private JFXComboBox<?> cmdName;
+    private JFXComboBox<String> cmdName;
 
     @FXML
     private TableColumn<?, ?> colEmail;
@@ -46,7 +58,7 @@ public class UserManagementFormForAdminController {
     private TableColumn<?, ?> colRole;
 
     @FXML
-    private TableView<?> tblSupplier;
+    private TableView<UserDTO> tblUser;
 
     @FXML
     private JFXTextField txtEmail;
@@ -69,7 +81,7 @@ public class UserManagementFormForAdminController {
 
     @FXML
     void btnReloadTableOnAction(ActionEvent event) {
-
+        loadTable();
     }
 
     @FXML
@@ -82,4 +94,31 @@ public class UserManagementFormForAdminController {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colRole.setCellValueFactory(new PropertyValueFactory<>("role"));
+
+        ObservableList<String> roles = FXCollections.observableArrayList();
+        roles.add("Admin");
+        roles.add("Employee");
+        cmbRole.setItems(roles);
+
+        tblUser.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
+            setTextToValues(newValue);
+        }));
+
+        loadTable();
+    }
+
+    private void setTextToValues(Object newValue) {
+    }
+
+    private void loadTable(){
+        ObservableList<UserDTO> userObservableList = userService.getAll();
+        tblUser.setItems(userObservableList);
+        System.out.println(userObservableList);
+    }
 }

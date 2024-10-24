@@ -5,20 +5,26 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import dto.TempUserDTO;
 import dto.UserDTO;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.hibernate.id.IdentifierGenerator;
 import service.ServiceFactory;
 import service.custom.TempUserService;
+import service.custom.UserService;
 import util.ServiceType;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static javafx.scene.control.Alert.AlertType.ERROR;
+import static javafx.scene.control.Alert.AlertType.INFORMATION;
 
 public class AddUserPopupFormController implements Initializable {
 
@@ -26,13 +32,13 @@ public class AddUserPopupFormController implements Initializable {
     private JFXButton btnSearchUserOnAction;
 
     @FXML
-    private JFXComboBox<?> cmbId;
+    private JFXComboBox<String> cmbId;
 
     @FXML
-    private JFXComboBox<?> cmbRole;
+    private JFXComboBox<String> cmbRole;
 
     @FXML
-    private JFXComboBox<?> cmdName;
+    private JFXComboBox<String> cmdName;
 
     @FXML
     private TableColumn<?, ?> colEmail;
@@ -50,9 +56,20 @@ public class AddUserPopupFormController implements Initializable {
     private JFXTextField txtEmail;
 
     TempUserService tempUserService = ServiceFactory.getInstance().getServiceType(ServiceType.TEMPUSER);
+    UserService userService = ServiceFactory.getInstance().getServiceType(ServiceType.USER);
+
+    private String password;
 
     @FXML
     void btnAddUserOnAction(ActionEvent event) {
+        UserDTO userDTO = new UserDTO(null, cmdName.getValue(), txtEmail.getText(), password, cmbRole.getValue());
+        System.out.println(userDTO);
+        boolean b = userService.addUser(userDTO);
+        if (b){
+            showAlert(INFORMATION,"Success","Success!","User saved successfully.");
+        }else {
+            showAlert(ERROR,"Error","Error!","User not saved.");
+        }
     }
 
     @FXML
@@ -65,12 +82,44 @@ public class AddUserPopupFormController implements Initializable {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+
+        ObservableList<String> roles = FXCollections.observableArrayList();
+        roles.add("Admin");
+        roles.add("Employee");
+        cmbRole.setItems(roles);
+
+        tblTempUser.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {
+            setTextToValues(newValue);
+        }));
+
         loadTable();
+    }
+
+    private void setTextToValues(UserDTO newValue) {
+        ObservableList<String> id = FXCollections.observableArrayList();
+        ObservableList<String> name = FXCollections.observableArrayList();
+        id.add(newValue.getId());
+        name.add(newValue.getName());
+        cmbId.setItems(id);
+        cmbId.setValue(newValue.getId());
+        System.out.println(id);
+        cmdName.setItems(name);
+        cmdName.setValue(newValue.getName());
+        txtEmail.setText(newValue.getEmail());
+        password = newValue.getPassword();
     }
 
     private void loadTable(){
         ObservableList<UserDTO> tempUserObservableList = tempUserService.getAll();
         tblTempUser.setItems(tempUserObservableList);
         System.out.println(tempUserObservableList);
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String header, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
