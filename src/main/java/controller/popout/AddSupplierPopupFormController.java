@@ -1,7 +1,7 @@
-package controller;
+package controller.popout;
 
 import com.jfoenix.controls.JFXTextField;
-import dto.Supplier;
+import dto.SupplierBasicDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import service.ServiceFactory;
@@ -18,8 +18,8 @@ public class AddSupplierPopupFormController {
 
     @FXML
     void btnAddSupplierOnAction(ActionEvent event) {
-        Supplier supplier = new Supplier(txtName.getText(), txtContact.getText());
-        boolean b = supplierService.addSupplier(supplier);
+        SupplierBasicDTO supplierBasicDTO = new SupplierBasicDTO(txtName.getText(), txtContact.getText());
+        boolean b = supplierService.addSupplier(supplierBasicDTO);
         System.out.println(b);
     }
 

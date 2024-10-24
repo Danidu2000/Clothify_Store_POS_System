@@ -1,11 +1,11 @@
 package service.custom.impl;
 
-import dto.Supplier;
+import dto.SupplierBasicDTO;
 import service.custom.SupplierService;
 
 public class SupplierServiceImpl implements SupplierService {
-    public boolean addSupplier(Supplier supplier){
-        System.out.println(supplier);
+    public boolean addSupplier(SupplierBasicDTO supplierBasicDTO){
+        System.out.println(supplierBasicDTO);
       return true;
     }
 }

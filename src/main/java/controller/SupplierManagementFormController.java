@@ -38,7 +38,7 @@ public class SupplierManagementFormController {
     void btnAddSupplierOnAction(ActionEvent event) {
         Stage stage = new Stage();
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/add_supplier_popup_form.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/popout/add_supplier_popup_form.fxml"))));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

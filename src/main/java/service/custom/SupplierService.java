@@ -1,8 +1,8 @@
 package service.custom;
 
-import dto.Supplier;
+import dto.SupplierBasicDTO;
 import service.SuperService;
 
 public interface SupplierService extends SuperService {
-    boolean addSupplier(Supplier supplier);
+    boolean addSupplier(SupplierBasicDTO supplierBasicDTO);
 }

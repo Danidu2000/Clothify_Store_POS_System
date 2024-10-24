@@ -3,13 +3,18 @@ package controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import dto.LoginInfo;
+import dto.LoginInfoDTO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import javafx.util.Pair;
 import service.ServiceFactory;
 import service.custom.LoginInfoService;
 import util.ServiceType;
+
+import java.io.IOException;
 
 public class LoginFormController {
 
@@ -26,12 +31,20 @@ public class LoginFormController {
 
     @FXML
     void userLogOnAction(ActionEvent event) {
-        LoginInfo loginInfo = new LoginInfo(
+        LoginInfoDTO loginInfoDTO = new LoginInfoDTO(
                 txtUserName.getText(),
                 psfPassword.getText()
         );
-        Pair<Boolean, String> validate = loginInfoService.isValidate(loginInfo);
+        Pair<Boolean, String> validate = loginInfoService.isValidate(loginInfoDTO);
         System.out.println(validate);
+
+        Stage stage = new Stage();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/login_dash_form_for_admin.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.show();
     }
 
 }
