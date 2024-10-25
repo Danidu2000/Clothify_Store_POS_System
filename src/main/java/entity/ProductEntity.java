@@ -20,12 +20,8 @@ public class ProductEntity {
             name = "custom-id",
             strategy = "generator.ProductIdGenerator"
     )
-    private String product_id;
-
-    @ManyToOne
-    @JoinColumn(name = "supplier_id", referencedColumnName = "id", nullable = false)
-    private SupplierEntity supplier;
-
+    private String id;
+    private String supplier_id;
     private String product_name;
     private String size;
     private String category;

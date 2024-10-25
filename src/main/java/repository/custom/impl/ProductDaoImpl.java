@@ -13,6 +13,7 @@ import java.util.List;
 public class ProductDaoImpl implements ProductDao {
     @Override
     public boolean save(ProductEntity productEntity) {
+        System.out.println(productEntity);
         Session session = HibernateUtil.getSession();
         session.beginTransaction();
         session.persist(productEntity);

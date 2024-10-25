@@ -31,16 +31,16 @@ public class SupplierServiceImpl implements SupplierService {
     public ObservableList<SupplierDTO> getAll() {
         ObservableList<SupplierEntity> supplierEntities = supplierDao.getAll();
 
-        ObservableList<SupplierDTO> supplierDTOListDTOList = FXCollections.observableArrayList();
+        ObservableList<SupplierDTO> supplierDTOList= FXCollections.observableArrayList();
 
         ModelMapper modelMapper = new ModelMapper();
 
         for (SupplierEntity entity : supplierEntities) {
             SupplierDTO dto = modelMapper.map(entity, SupplierDTO.class);
-            supplierDTOListDTOList.add(dto);
+            supplierDTOList.add(dto);
         }
 
-        return supplierDTOListDTOList;
+        return supplierDTOList;
     }
 
     @Override
