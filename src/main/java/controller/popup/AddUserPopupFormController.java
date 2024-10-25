@@ -27,18 +27,17 @@ import static javafx.scene.control.Alert.AlertType.ERROR;
 import static javafx.scene.control.Alert.AlertType.INFORMATION;
 
 public class AddUserPopupFormController implements Initializable {
+    @FXML
+    public JFXTextField txtId;
+
+    @FXML
+    public JFXTextField txtName;
 
     @FXML
     private JFXButton btnSearchUserOnAction;
 
     @FXML
-    private JFXComboBox<String> cmbId;
-
-    @FXML
     private JFXComboBox<String> cmbRole;
-
-    @FXML
-    private JFXComboBox<String> cmdName;
 
     @FXML
     private TableColumn<?, ?> colEmail;
@@ -62,8 +61,7 @@ public class AddUserPopupFormController implements Initializable {
 
     @FXML
     void btnAddUserOnAction(ActionEvent event) {
-        UserDTO userDTO = new UserDTO(null, cmdName.getValue(), txtEmail.getText(), password, cmbRole.getValue());
-        System.out.println(userDTO);
+        UserDTO userDTO = new UserDTO(null, txtName.getText(), txtEmail.getText(), password, cmbRole.getValue());
         boolean b = userService.addUser(userDTO);
         if (b){
             showAlert(INFORMATION,"Success","Success!","User saved successfully.");
@@ -96,15 +94,8 @@ public class AddUserPopupFormController implements Initializable {
     }
 
     private void setTextToValues(UserDTO newValue) {
-        ObservableList<String> id = FXCollections.observableArrayList();
-        ObservableList<String> name = FXCollections.observableArrayList();
-        id.add(newValue.getId());
-        name.add(newValue.getName());
-        cmbId.setItems(id);
-        cmbId.setValue(newValue.getId());
-        System.out.println(id);
-        cmdName.setItems(name);
-        cmdName.setValue(newValue.getName());
+        txtId.setText(newValue.getId());
+        txtName.setText(newValue.getName());
         txtEmail.setText(newValue.getEmail());
         password = newValue.getPassword();
     }

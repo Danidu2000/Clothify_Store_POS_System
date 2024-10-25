@@ -24,8 +24,29 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean delete(String id) {
-        return false;
+        Session session = HibernateUtil.getSession();
+        try {
+            session.beginTransaction();
+            UserEntity userEntity = session.get(UserEntity.class, id);
+
+            if (userEntity != null) {
+                session.remove(userEntity);
+                session.getTransaction().commit();
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+            e.printStackTrace();
+            return false;
+        } finally {
+            session.close();
+        }
     }
+
 
     @Override
     public ObservableList<UserEntity> getAll() {
@@ -40,11 +61,41 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean update(UserEntity userEntity) {
-        return false;
+        Session session = HibernateUtil.getSession();
+        try {
+            session.beginTransaction();
+            session.update(userEntity);
+            session.getTransaction().commit();
+            return true;
+
+        } catch (Exception e) {
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+            e.printStackTrace();
+            return false;
+        } finally {
+            session.close();
+        }
     }
 
     @Override
     public UserEntity search(String id) {
-        return null;
+        Session session = HibernateUtil.getSession();
+        try {
+            session.beginTransaction();
+            UserEntity userEntity = session.get(UserEntity.class, id);
+            session.getTransaction().commit();
+            return userEntity;
+        } catch (Exception e) {
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+        }
     }
+
 }

@@ -10,7 +10,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 
-public class Product {
+public class ProductDTO {
     private String product_id;
     private String supplier_id;
     private String product_name;

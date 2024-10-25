@@ -8,7 +8,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.modelmapper.ModelMapper;
 import repository.DaoFactory;
-import repository.custom.TempUserDao;
 import repository.custom.UserDao;
 import service.custom.UserService;
 import util.DaoType;
@@ -30,7 +29,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean deleteUser(String id) {
-        return false;
+        return userDao.delete(id);
     }
 
     @Override
@@ -50,13 +49,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean updateUser(UserDTO UserDTO) {
-        return false;
+    public boolean updateUser(UserDTO userDTO) {
+        try {
+            UserEntity entity = new ModelMapper().map(userDTO, UserEntity.class);
+            userDao.update(entity);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
     public UserDTO searchUser(String id) {
-        return null;
+        UserEntity userEntity = userDao.search(id);
+        if (userEntity == null) {
+            return null;
+        }
+        ModelMapper modelMapper = new ModelMapper();
+
+        return modelMapper.map(userEntity, UserDTO.class);
     }
 
     @Override

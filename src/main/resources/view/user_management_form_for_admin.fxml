@@ -8,15 +8,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="522.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserManagementFormForAdminController">
    <children>
-      <JFXComboBox fx:id="cmbId" layoutX="40.0" layoutY="120.0" prefHeight="26.0" prefWidth="150.0" promptText="User ID" />
-      <JFXComboBox fx:id="cmdName" layoutX="226.0" layoutY="120.0" prefHeight="26.0" prefWidth="150.0" promptText="Name" />
       <JFXTextField fx:id="txtEmail" layoutX="419.0" layoutY="120.0" promptText="Contact" text="Email" />
       <JFXButton fx:id="btnDeleteUserOnAction" layoutX="540.0" layoutY="190.0" onAction="#btnDeleteSupplierOnAction" style="-fx-background-color: #a29bfe;" text="Delete" />
-      <JFXButton fx:id="btnUpdateUserOnAction" layoutX="617.0" layoutY="190.0" onAction="#btnUpdateSupplierOnAction" style="-fx-background-color: #a29bfe;" text="Update" />
-      <JFXButton fx:id="btnSearchUserOnAction" layoutX="696.0" layoutY="190.0" onAction="#btnSearchSupplierOnAction" style="-fx-background-color: #a29bfe;" text="Search" />
+      <JFXButton fx:id="btnUpdateUserOnAction" layoutX="617.0" layoutY="190.0" onAction="#btnUpdateUserOnAction" style="-fx-background-color: #a29bfe;" text="Update" />
+      <JFXButton fx:id="btnSearchUserOnAction" layoutX="696.0" layoutY="190.0" onAction="#btnSearchUserOnAction" style="-fx-background-color: #a29bfe;" text="Search" />
       <TableView fx:id="tblUser" layoutX="45.0" layoutY="251.0" prefHeight="200.0" prefWidth="706.0">
          <columns>
             <TableColumn fx:id="colId" prefWidth="102.39998626708984" text="User ID" />
@@ -32,5 +29,7 @@
       </JFXButton>
       <JFXButton layoutX="698.0" layoutY="469.0" onAction="#btnReloadTableOnAction" style="-fx-background-color: #a29bfe;" text="Reload" />
       <JFXComboBox fx:id="cmbRole" layoutX="598.0" layoutY="120.0" prefHeight="26.0" prefWidth="150.0" promptText="Role" />
+      <JFXTextField fx:id="txtId" layoutX="45.0" layoutY="120.0" promptText="User ID" />
+      <JFXTextField fx:id="txtName" layoutX="229.0" layoutY="120.0" promptText="Name" />
    </children>
 </AnchorPane>

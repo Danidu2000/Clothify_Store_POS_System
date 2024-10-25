@@ -1,8 +1,18 @@
 package service.custom;
 
-import dto.SupplierBasicDTO;
+import dto.SupplierDTO;
+import javafx.collections.ObservableList;
 import service.SuperService;
 
 public interface SupplierService extends SuperService {
-    boolean addSupplier(SupplierBasicDTO supplierBasicDTO);
+    boolean addSupplier(SupplierDTO supplierDTO);
+
+    ObservableList<SupplierDTO> getAll();
+
+    boolean deleteSupplier(String supplierId);
+
+    SupplierDTO searchSupplier(String id);
+
+    boolean updateSupplier(SupplierDTO supplierDTO);
+
 }

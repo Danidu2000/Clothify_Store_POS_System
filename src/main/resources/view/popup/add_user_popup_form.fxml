@@ -7,13 +7,10 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="438.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.popup.AddUserPopupFormController">
    <children>
-      <JFXComboBox fx:id="cmbId" layoutX="50.0" layoutY="104.0" prefHeight="26.0" prefWidth="150.0" promptText="Temp ID" />
-      <JFXComboBox fx:id="cmdName" layoutX="236.0" layoutY="104.0" prefHeight="26.0" prefWidth="150.0" promptText="Name" />
       <JFXTextField fx:id="txtEmail" layoutX="429.0" layoutY="104.0" promptText="Contact" text="Email" />
-      <JFXComboBox fx:id="cmbRole" layoutX="608.0" layoutY="104.0" prefHeight="26.0" prefWidth="150.0" promptText="Role" />
+      <JFXComboBox fx:id="cmbRole" layoutX="606.0" layoutY="103.0" prefHeight="26.0" prefWidth="150.0" promptText="Role" />
       <JFXButton layoutX="705.0" layoutY="398.0" onAction="#btnReloadTableOnAction" style="-fx-background-color: #a29bfe;" text="Reload" />
       <TableView fx:id="tblTempUser" layoutX="51.0" layoutY="184.0" prefHeight="200.0" prefWidth="706.0">
          <columns>
@@ -23,5 +20,7 @@
          </columns>
       </TableView>
       <JFXButton fx:id="btnSearchUserOnAction" layoutX="705.0" layoutY="146.0" onAction="#btnAddUserOnAction" style="-fx-background-color: #a29bfe;" text="Add" />
+      <JFXTextField fx:id="txtId" layoutX="51.0" layoutY="104.0" promptText="Contact" text="Temp ID" />
+      <JFXTextField fx:id="txtName" layoutX="233.0" layoutY="104.0" promptText="Contact" text="Name" />
    </children>
 </AnchorPane>

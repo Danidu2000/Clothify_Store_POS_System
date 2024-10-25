@@ -27,12 +27,6 @@ public class TempUserServiceImpl implements TempUserService {
         }
     }
 
-
-    @Override
-    public boolean deleteUser(String id) {
-        return false;
-    }
-
     @Override
     public ObservableList<UserDTO> getAll() {
         ObservableList<TempUserEntity> tempUserEntities = tempUserDao.getAll();
@@ -47,16 +41,6 @@ public class TempUserServiceImpl implements TempUserService {
         }
 
         return UserDTOList;
-    }
-
-    @Override
-    public boolean updateUser(TempUserDTO tempUserDTO) {
-        return false;
-    }
-
-    @Override
-    public TempUserDTO searchUser(String id) {
-        return null;
     }
 
     @Override
