@@ -17,7 +17,13 @@ public class LoginDashFormControllerForAdmin {
 
     @FXML
     void btnItemStockManagementOnAction(ActionEvent event) {
-
+        Stage stage = new Stage();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/stock_management_form.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.show();
     }
 
     @FXML
